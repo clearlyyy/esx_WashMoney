@@ -29,7 +29,7 @@ Citizen.CreateThread(function()
 		local pedX, pedY, pedZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
 
 		local washMoneyLocations = {
-			{X = 1122.724,Y = -3194.481,Z = -40.39858}
+			{X = Config.Location.X, Y = Config.Location.Y, Z = Config.Location.Z}
 		}
 
 		for k, _ in pairs(washMoneyLocations) do

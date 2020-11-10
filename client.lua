@@ -23,28 +23,34 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(0)
+		Citizen.Wait(1)
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local pedX, pedY, pedZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
 
 		local washMoneyLocations = {
-			{X = 1535.91,Y = 2231.92,Z = 77.7}
+			{X = 1122.724,Y = -3194.481,Z = -40.39858}
 		}
 
 		for k, _ in pairs(washMoneyLocations) do
 			local distance = Vdist(pedX, pedY, pedZ, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z)
 			if distance < 6.0 then
-				DrawMarker(20, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+				DrawMarker(Config.MarkerType, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
 				letSleep = false
-				SetNotificationTextEntry("STRING")
-				AddTextComponentString("<b>Press E To Wash Your Money</b>")
-				DrawNotification(true, false)
 				if IsControlJustReleased(0, Keys['E']) then
 					TriggerServerEvent("esx_WashMoney:wash")
 				end
+			end
+			if distance < 1.0 then
+				DisplayHelpText()
 			end
 		end
 
 	end
 end)
+
+function DisplayHelpText()
+	SetTextComponentFormat("STRING")
+	AddTextComponentString("Press ~b~[E]~w~ to Wash your Money")
+	DisplayHelpTextFromStringLabel(0, 0, 1, -1)	
+end

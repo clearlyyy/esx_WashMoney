@@ -10,6 +10,7 @@ How to Install?
 On Linux proceed with the following
 
 cd resources
+
 git clone https://github.com/clearlyyy/esx_WashMoney.git
 
 Manually

@@ -32,7 +32,7 @@ Citizen.CreateThread(function()
 			{X = Config.Location.X, Y = Config.Location.Y, Z = Config.Location.Z}
 		}
 
-		for k, _ in pairs(washMoneyLocations) do
+		for k, _ in pairs(washMoneyLocations) do -- displays marker and washes the money.
 			local distance = Vdist(pedX, pedY, pedZ, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z)
 			if distance < 6.0 then
 				DrawMarker(Config.MarkerType, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
-function DisplayHelpText()
+function DisplayHelpText() -- Display's Help Message
 	SetTextComponentFormat("STRING")
 	AddTextComponentString("Press ~b~[E]~w~ to Wash your Money")
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)	

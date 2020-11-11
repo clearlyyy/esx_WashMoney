@@ -20,18 +20,15 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 end)
-
+local washMoneyLocations = {
+	{X = Config.Location.X, Y = Config.Location.Y, Z = Config.Location.Z}
+}
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local pedX, pedY, pedZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
-
-		local washMoneyLocations = {
-			{X = Config.Location.X, Y = Config.Location.Y, Z = Config.Location.Z}
-		}
-
 		for k, _ in pairs(washMoneyLocations) do -- displays marker and washes the money.
 			local distance = Vdist(pedX, pedY, pedZ, washMoneyLocations[k].X, washMoneyLocations[k].Y, washMoneyLocations[k].Z)
 			if distance < 6.0 then
